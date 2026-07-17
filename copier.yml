@@ -1,0 +1,15 @@
+_subdirectory: template
+
+project_name:
+  type: str
+  help: "Human-readable ROM title"
+  default: "My DS Homebrew"
+
+project_slug:
+  type: str
+  help: "ROM filename (ex: my-ds-homebrew)"
+  default: "{{ project_name | lower | replace(' ', '-') }}"
+  validator: >-
+    {% if not (project_slug | regex_search('^[a-z][a-z0-9-]*$')) %}
+    Use lowercase letters, digits, and hyphens. Start with a letter.
+    {% endif %}

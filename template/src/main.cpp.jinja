@@ -1,0 +1,28 @@
+#include <nds.h>
+#include <stdio.h>
+
+int main() {
+    lcdMainOnTop();
+
+    videoSetMode(MODE_0_2D);
+    vramSetBankA(VRAM_A_MAIN_BG);
+
+    consoleInit(
+        nullptr,
+        3,
+        BgType_Text4bpp,
+        BgSize_T_256x256,
+        31,
+        0,
+        true,
+        true
+    );
+
+    iprintf("Hello World!");
+
+    while (pmMainLoop()) {
+        swiWaitForVBlank();
+    }
+
+    return 0;
+}

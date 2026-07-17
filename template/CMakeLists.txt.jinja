@@ -1,0 +1,25 @@
+cmake_minimum_required(VERSION 3.20)
+
+project({{ project_slug }} LANGUAGES CXX)
+
+set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
+
+add_executable({{ project_slug }}
+    src/main.cpp
+)
+
+target_include_directories({{ project_slug }}
+    PRIVATE
+    "${CMAKE_SOURCE_DIR}/src"
+)
+
+target_compile_features({{ project_slug }} PRIVATE cxx_std_17)
+
+target_compile_options({{ project_slug }} PRIVATE
+    -fno-exceptions
+    -fno-rtti
+)
+
+nds_create_rom({{ project_slug }}
+    NAME "{{ project_name }}"
+)
